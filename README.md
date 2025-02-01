@@ -9,7 +9,8 @@ Every bus seats are fixed (40), for a trip. Trips are initiallised by Departure 
 <img width="1280" alt="Screenshot 2025-02-01 at 2 09 42 PM" src="https://github.com/user-attachments/assets/162daf1e-1310-4223-9c18-e993523034d7" />
 <img width="1280" alt="Screenshot 2025-02-01 at 2 10 59 PM" src="https://github.com/user-attachments/assets/9eebd055-e742-435c-bdf1-ebf498c4def2" />
 <img width="900" alt="Screenshot 2025-02-01 at 2 11 15 PM" src="https://github.com/user-attachments/assets/fa185379-083b-4011-93d4-33566f03bfe6" />
-<img width="1279" alt="Screenshot 2025-02-01 at 2 22 00 PM" src="https://github.com/user-attachments/assets/5072bd86-8fd7-459a-9037-deecb4bb4aae" />
 <img width="1280" alt="Screenshot 2025-02-01 at 2 11 53 PM" src="https://github.com/user-attachments/assets/8997d6bc-651a-4763-98fe-89e53ff1abaf" />
+<img width="1279" alt="Screenshot 2025-02-01 at 2 22 00 PM" src="https://github.com/user-attachments/assets/5072bd86-8fd7-459a-9037-deecb4bb4aae" />
+
 
  
