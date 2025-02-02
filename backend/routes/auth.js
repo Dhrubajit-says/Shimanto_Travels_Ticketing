@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
       }
     };
 
-    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '12h' });
+    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '24h' });
     res.json({ token, role: user.role });
   } catch (err) {
     console.error(err.message);

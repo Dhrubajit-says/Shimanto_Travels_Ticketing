@@ -27,6 +27,7 @@ import { Print} from '@mui/icons-material';
 import api from '../../services/api';
 import { useTheme } from '@mui/material/styles';
 import logo from '../../images/SE.jpg';
+import dayjs from 'dayjs';
 
 // Styled Seat Button
 const SeatButton = styled(Button)(({ theme, isSelected, isBooked }) => ({

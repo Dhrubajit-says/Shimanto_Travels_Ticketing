@@ -12,6 +12,11 @@ export const auth = async (req, res, next) => {
 
     const decoded = jwt.verify(token, config.jwtSecret);
     
+    // Check if decoded token has the expected structure
+    if (!decoded.user || !decoded.user.id) {
+      return res.status(401).json({ message: 'Invalid token structure' });
+    }
+
     // Fetch full user data
     const user = await User.findById(decoded.user.id).select('-password');
     if (!user) {
@@ -27,7 +32,7 @@ export const auth = async (req, res, next) => {
       counterName: user.counterName
     });
 
-    if (req.user.isBlocked) {
+    if (user.isBlocked) {
       return res.status(403).json({ message: 'Your account has been blocked' });
     }
 
@@ -40,13 +45,14 @@ export const auth = async (req, res, next) => {
 
 export const adminAuth = async (req, res, next) => {
   try {
-    await auth(req, res, () => {
+    await auth(req, res, async () => {
       if (req.user.role !== 'admin') {
         return res.status(403).json({ message: 'Access denied. Admin only.' });
       }
       next();
     });
   } catch (error) {
+    console.error('Admin auth error:', error);
     next(error);
   }
 }; 
