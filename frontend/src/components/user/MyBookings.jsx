@@ -20,7 +20,6 @@ import {
   Divider
 } from '@mui/material';
 import { Print, Visibility } from '@mui/icons-material';
-import dayjs from 'dayjs';
 import api from '../../services/api';
 import logo from '../../images/SE.jpg';
 import { useTheme } from '@mui/material/styles';
