@@ -31,7 +31,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Print, Search, Delete as DeleteIcon } from '@mui/icons-material';
-import dayjs from 'dayjs';
 import api from '../../services/api';
 import logo from '../../images/SE.jpg';
 import { useTheme } from '@mui/material/styles';
