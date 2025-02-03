@@ -16,10 +16,15 @@ app.use(express.json());
 // MongoDB Connection
 mongoose.connect(config.mongoUri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  retryWrites: true,
+  w: 'majority'
 })
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch(err => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1);  // Exit if cannot connect to database
+});
 
 // Add this before your routes
 app.use((req, res, next) => {
