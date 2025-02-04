@@ -12,7 +12,7 @@ app.use(express.json());
 // Connect to MongoDB
 mongoose.connect(config.mongoURI)
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log('MongoDB Connection Error:', err));
+  .catch(err => console.log('MongoDB connection error:', err));
 
 // Add this before your routes
 app.use((req, res, next) => {
@@ -37,5 +37,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+app.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`);
+}); 

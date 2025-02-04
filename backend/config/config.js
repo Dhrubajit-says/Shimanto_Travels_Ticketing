@@ -1,11 +1,13 @@
-const config = {
-  mongoURI: "mongodb://localhost:27017/T-35",
-  jwtSecret: "your-secret-key",
+import dotenv from 'dotenv';
+dotenv.config();
+
+export default {
+  port: process.env.PORT || 5000,
+  mongoURI: process.env.MONGODB_URI,
+  jwtSecret: process.env.JWT_SECRET,
   jwtExpiration: "24h",
   adminCredentials: {
     username: "admin_00",
     password: "admin_00"
   }
-};
-
-export default config; 
+}; 
