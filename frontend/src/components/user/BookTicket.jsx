@@ -23,11 +23,11 @@ import { styled } from '@mui/material/styles';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Print} from '@mui/icons-material';
+import { Print, EventSeat } from '@mui/icons-material';
+import dayjs from 'dayjs';
 import api from '../../services/api';
 import { useTheme } from '@mui/material/styles';
 import logo from '../../images/SE.jpg';
-import dayjs from 'dayjs';
 
 // Styled Seat Button
 const SeatButton = styled(Button)(({ theme, isSelected, isBooked }) => ({

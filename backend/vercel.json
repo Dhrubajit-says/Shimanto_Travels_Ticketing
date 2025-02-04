@@ -8,11 +8,12 @@
     ],
     "routes": [
     {
-    "src": "/(.*)",
+    "src": "/api/(.*)",
     "dest": "server.js"
     }
     ],
     "env": {
-    "MONGODB_URI": "mongodb+srv://dj100101000:xYFqGE9U2jgJ47dM@cluster0.tb8rn.mongodb.net/Shimanto_Travels?retryWrites=true&w=majority"
+    "DATABASE_URL": "@database_url",
+    "API_KEY": "@api_key"
     }
 }

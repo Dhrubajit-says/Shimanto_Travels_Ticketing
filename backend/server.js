@@ -2,10 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import config from './config/config.js';
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/users.js';
-import routeRoutes from './routes/routes.js';
-import bookingRoutes from './routes/bookings.js';
 
 const app = express();
 
@@ -13,18 +9,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(config.mongoUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  retryWrites: true,
-  w: 'majority'
-})
-.then(() => console.log('Connected to MongoDB Atlas'))
-.catch(err => {
-  console.error('MongoDB Atlas connection error:', err);
-  process.exit(1);  // Exit if cannot connect to database
-});
+// Connect to MongoDB
+mongoose.connect(config.mongoURI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log('MongoDB Connection Error:', err));
 
 // Add this before your routes
 app.use((req, res, next) => {
@@ -32,7 +20,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// Routes will be imported here
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
+import routeRoutes from './routes/routes.js';
+import bookingRoutes from './routes/bookings.js';
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/routes', routeRoutes);
@@ -44,8 +37,5 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-const PORT = config.port;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-}); 
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 

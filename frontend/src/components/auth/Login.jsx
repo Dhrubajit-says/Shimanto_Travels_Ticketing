@@ -8,7 +8,8 @@ import {
   Paper,
   CircularProgress,
   Alert,
-  Grid
+  Grid,
+  Divider
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -29,18 +30,14 @@ const Login = () => {
 
     try {
       const response = await api.post('/auth/login', { username, password });
-      console.log('Login response:', response.data);
-      
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('role', response.data.role);
       localStorage.setItem('username', response.data.username);
       if (response.data.counterName) {
         localStorage.setItem('counterName', response.data.counterName);
       }
-      
       navigate(response.data.role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
     } catch (error) {
-      console.error('Login error:', error);
       setError(error.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);

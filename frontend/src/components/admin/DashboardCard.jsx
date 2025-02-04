@@ -17,7 +17,7 @@ const DashboardCard = ({ title, icon, path, color, description, onClick }) => {
     <Paper
       sx={{
         p: 2.5,
-        height: '150px',
+        height: '140px',
         cursor: onClick || path ? 'pointer' : 'default',
         transition: 'all 0.3s ease',
         position: 'relative',
@@ -38,12 +38,12 @@ const DashboardCard = ({ title, icon, path, color, description, onClick }) => {
         sx={{
           bgcolor: `${color}15`,
           borderRadius: 2,
-          p: 1.2,
+          p: 1,
           display: 'inline-flex',
           mb: 1.5,
           transition: 'transform 0.3s ease',
           '& svg': {
-            fontSize: 28,
+            fontSize: 24,
             color: color
           }
         }}
@@ -56,7 +56,7 @@ const DashboardCard = ({ title, icon, path, color, description, onClick }) => {
         component="h2" 
         gutterBottom 
         sx={{ 
-          fontSize: '1.1rem',
+          fontSize: '1rem',
           color: 'text.primary',
           fontWeight: 600,
           mb: 0.5
@@ -69,7 +69,7 @@ const DashboardCard = ({ title, icon, path, color, description, onClick }) => {
         variant="body2" 
         color="text.secondary"
         sx={{ 
-          fontSize: '0.9rem',
+          fontSize: '0.875rem',
           opacity: 0.8
         }}
       >
