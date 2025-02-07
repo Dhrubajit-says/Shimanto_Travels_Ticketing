@@ -6,15 +6,7 @@ import config from './config/config.js';
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://shimanto-travels.vercel.app',
-    'https://your-frontend-domain.vercel.app'  // Add your actual frontend domain
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}));
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
@@ -43,16 +35,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/routes', routeRoutes);
 app.use('/api/bookings', bookingRoutes);
-
-// Add this before your routes
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'API is working' });
-});
-
-// Add this after all your routes but before the 404 handler
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
 
 // Add this after your routes to catch unhandled routes
 app.use((req, res) => {
