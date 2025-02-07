@@ -20,6 +20,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Add this before your routes
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No content response
+});
+
 // Routes will be imported here
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';

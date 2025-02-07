@@ -13,17 +13,32 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    // Add debug logs
+    console.log('Login attempt for username:', username);
+    
     const user = await User.findOne({ username });
     if (!user) {
+      console.log('User not found in database');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    console.log('User found:', {
+      id: user._id,
+      username: user.username,
+      role: user.role,
+      status: user.status
+    });
+
     if (user.status === 'blocked') {
+      console.log('User is blocked');
       return res.status(403).json({ message: 'Account is blocked' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log('Password match result:', isMatch);
+    
     if (!isMatch) {
+      console.log('Password does not match');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
@@ -37,9 +52,11 @@ router.post('/login', async (req, res) => {
     };
 
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '12h' });
+    console.log('Login successful, token generated');
+    
     res.json({ token, role: user.role });
   } catch (err) {
-    console.error(err.message);
+    console.error('Login error:', err);
     res.status(500).send('Server error');
   }
 });
@@ -103,6 +120,15 @@ router.delete('/users/:id', adminAuth, async (req, res) => {
     res.json({ message: 'User deleted successfully' });
   } catch (err) {
     res.status(500).send('Server error');
+  }
+});
+
+// Add this to handle incorrect methods
+router.all('/login', (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      message: `Method ${req.method} not allowed. Use POST instead.` 
+    });
   }
 });
 
