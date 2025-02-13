@@ -6,7 +6,15 @@ import config from './config/config.js';
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://simantotravels.com',
+    'http://simantotravels.com'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -42,6 +50,8 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-app.listen(config.port, () => {
-  console.log(`Server running on port ${config.port}`);
+// Update the listen configuration
+app.listen(process.env.PORT || 5001, '0.0.0.0', () => {
+  console.log(`Server running on port ${process.env.PORT || 5001}`);
+  console.log('Server is listening on all network interfaces');
 }); 
