@@ -17,3 +17,5 @@ export default {
     password: process.env.ADMIN_PASSWORD
   }
 }; 
+
+hello paji!
